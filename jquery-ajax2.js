@@ -1,14 +1,14 @@
 $(document).ready(function() {
     let testForm = $('#testForm');
     testForm.submit(function() {
-        if ($('#username').val().length < 5) {
+        if ($('#region').val().length = 0) {
             alert("Введите не менее 5 символов!");
-            $('#username').focus();
+            $('#region').focus();
             return false;
         }
-        if ($('#useremail').val().length < 5) {
+        if ($('#datav').val().length = 0) {
             alert("Введите не менее 5 символов!");
-            $('#useremail').focus();
+            $('#datav').focus();
             return false;
         }
         console.log($('input[name="skills"]'));

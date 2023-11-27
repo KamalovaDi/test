@@ -66,6 +66,9 @@ label {
 input {
     padding: 8px;
 }
+select {
+  padding: 8px;
+}
 
 .btn {
     display: inline-block;
