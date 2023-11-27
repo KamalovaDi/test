@@ -1,12 +1,27 @@
 <?php
 include ("main.php");
-    // $sql = $mysqli->query("SELECT `surname` FROM `qwerty` WHERE `id` = {$_POST['courer1']}");
-    // //$object = mysqli_fetch_object($res);
-    // if($result = mysqli_fetch_array($sql)){
-    //     echo "{$result['surname']}";
-    // }
-    $inp1 = $_POST['courer1'];
-    echo $inp1;
+    $sql = $mysqli->query("SELECT `NameRegion` FROM `regions` WHERE `idRegions` = {$_POST['regions']}");
+    $inp = $_POST['datav'];
+    // $inp = $_POST['days'];
+    if($result = mysqli_fetch_array($sql)){
+        echo " {$result['NameRegion']} ";
+        // echo " {$result['Days']} ";
+        echo $inp;
+    }
+
+    $sql2 = $mysqli->query("SELECT `FIO` FROM `courier` WHERE `idCourier` = {$_POST['courer']}");
+    if($result = mysqli_fetch_array($sql2)){
+        echo "{$result['FIO']}";
+    }
+    
+    $sql3 = $mysqli->query("SELECT `FIO` FROM `courier` WHERE `idCourier` = {$_POST['courer']} && `idCourier` = {$_POST['courer']}");
+    if($result = mysqli_fetch_array($sql2)){
+        echo "Курьер {$result['FIO']} занят";
+    }
+
+    // if(!isset($_POST['regions']) || !isset($_POST['courer']) || !isset($_POST['datav'])) die('Нет нужных данных');
+
+    
 
     // $sql = mysqli_query($link, 'SELECT `ID`, `Name`, `Price` FROM `products`');
     // while ($result = mysqli_fetch_array($sql)) {

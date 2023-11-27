@@ -3,14 +3,14 @@ var servResponse = document.querySelector('#response');
 document.forms.ourForm.onsubmit = function(e){
     e.preventDefault();
     
-    var userInput = document.forms.ourForm.value;
+    var userInput = document.forms.testForm.value;
     userInput = encodeURIComponent(userInput);
 
     var xhr = new XMLHttpRequest();
 
     xhr.open('POST', '1(1).php');
 
-    var formData = new FormData(document.forms.ourForm);
+    var formData = new FormData(document.forms.testForm);
     // xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 
     xhr.onreadystatechange = function(){

@@ -7,46 +7,51 @@
 </head>
 <?php
     include ("main.php");
-    // $sql = $mysqli->query("SELECT * FROM `qwerty`");
-    // if ($row = $sql->fetch_array()) {
-    //     $rowsCount = mysqli_num_rows($sql);
-    //     echo "<p>Получено объектов: $rowsCount</p>";
-    //     echo "<table><tr><th>Id</th><th>Имя</th><th>Возраст</th><th>Gjk</th></tr>";
-    //     foreach($sql as $row){
-    //         echo "<tr>";
-    //             echo "<td>" . $row["id"] . "</td>";
-    //             echo "<td>" . $row["name"] . "</td>";
-    //             echo "<td>" . $row["surname"] . "</td>";
-    //             echo "<td>" . $row["sex"] . "</td>";
-    //         echo "</tr>";
-    //     }
-    // }
+
 ?>
 <body>
 
-<form action="1(1).php" name='ourForm' id="ourForm" >
-
-    <input type="date" id="datav" name='ourF'>
-       <!-- <input type="text" id="courer" name="courer"> -->
-    <select for="courer" id="courer1" name="courer1">
+<form  name='ourForm' class="small-form" id="testForm">
+<p>
+    <label for="region">Регион</label>
+    <select for="region" id="region" name="regions">
     <?php
-        $result = $mysqli->query('SELECT * FROM `qwerty`');
-        echo "<option value='0'></option>";
-            while($object = mysqli_fetch_object($result)){
-                echo "<option value = '$object->id' > $object->surname </option>";}
-                echo "</select>"; 
+            $result = $mysqli->query('SELECT * FROM `regions`');
+            echo "<option value='0'></option>";
+                while($object = mysqli_fetch_object($result)){
+                    echo "<option value = '$object->idRegions' > $object->NameRegion </option>";}
+                    echo "</select>"; 
     ?>
-    </select>
+    </select></p>
+    
+    <p><label for="datav">Дата выезда из Москвы</label>
+       <input type="date" id="datav" name="datav"></p>
 
-    <!-- <p><label for="datav">Дата выезда из Москвы</label>
-       <input type="date" id="datav" name="datav"></p> -->
-    <button type="submit" name='ourForm_btn'>Отправить</button>
+
+    <p><label for="courer">Курьер</label>
+       <!-- <input type="text" id="courer" name="courer"> -->
+       <select for="courer" id="courer" name="courer">
+       <?php
+            $result = $mysqli->query('SELECT * FROM `courier`');
+            echo "<option value='0'></option>";
+                while($object = mysqli_fetch_object($result)){
+                    echo "<option value = '$object->idCourier' > $object->FIO </option>";}
+                    echo "</select>"; 
+        ?>
+       </select></p>
+       <!-- <p><label for="days">Дней в пути: </label></p> -->
+
+    <button type="submit" name='ourForm_btn'>Записать</button>
+    <p><button action = "2.php" type="submit" name='ourForm_btn'>Список</button></p>
 
 </form>
-<div id="response">1</div>
-<div id="response2">2</div>
 
-<script src="1.js"></script>
+
+ <div id="response"></div> 
+ <div id="rip"></div> 
+<!-- <div id="response2">2</div> -->
+
+<script src="11.js"></script>
 <!-- <script src="jquery-3.5.1.min.js"></script> --> 
 
 </body>
