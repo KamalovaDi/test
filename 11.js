@@ -1,10 +1,12 @@
 var servResponse = document.querySelector('#response');
-
-document.forms.ourForm.onsubmit = function(e){
+// var servResponse2 = document.querySelector('#response2');
+document.forms.testForm.onsubmit = function(e){
     e.preventDefault();
-    
     var userInput = document.forms.testForm.value;
     userInput = encodeURIComponent(userInput);
+
+    // var userInput2 = document.forms.testForm.ras.value;
+    // userInput2 = encodeURIComponent(userInput2);
 
     var xhr = new XMLHttpRequest();
 
@@ -16,9 +18,11 @@ document.forms.ourForm.onsubmit = function(e){
     xhr.onreadystatechange = function(){
         if(xhr.readyState === 4 && xhr.status === 200){
             servResponse.textContent = xhr.responseText;
+            // servResponse2.textContent = xhr.responseText;
         }
     }
     xhr.send(formData);
-    //xhr2.send('ourF='+userInput2);
+    // xhr.send('rip='+userInput2);
+
     
 };
