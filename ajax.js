@@ -25,7 +25,7 @@ document.forms.testForm.onsubmit = function(e){
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open('POST', '1(1).php');
+    xhr.open('POST', 'код глав.php');
 
     xhr.onload = validate_form();
 

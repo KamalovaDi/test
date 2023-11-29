@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="description">
     <title>Доставка</title>
-    <link rel="stylesheet" href="st.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 <?php
@@ -44,7 +44,7 @@
        <div id="response"></div> 
 
 </form>
-<script src="11.js"></script>
+<script src="ajax.js"></script>
 
 
 <form name='testForm2' class="small-form2" id="testForm2" method="POST">
@@ -52,9 +52,9 @@
 <p><input type="date" id="dataf" name="dataf"> 
 <button type="submit" name='ourForm_btn2'>Поиск</button>
 <?php
-$date = $_POST['dataf']; // дата, введенная пользователем
-
+ // дата, введенная пользователем
 if(!empty($_POST['dataf'])){
+    $date = $_POST['dataf'];
     $sql = $mysqli->query("SELECT regions.idRegions, courier.idCourier, regions.NameRegion, courier.FIO, chart.dateOtprav 
         FROM `regions`, `courier`, `chart` WHERE regions.idRegions = chart.idReg AND courier.idCourier = chart.idCour 
         AND chart.dateOtprav = '" . date('Y-m-d', strtotime($date)) . "'");
