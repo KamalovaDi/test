@@ -1,45 +1,25 @@
 <?php
 include ("main.php");
-    // $sql = $mysqli->query("SELECT `NameRegion` FROM `regions` WHERE `idRegions` = {$_POST['regions']}");
-    // $inp = $_POST['datav'];
-    // // $inp = $_POST['days'];
-    // if($result = mysqli_fetch_array($sql)){
-    //     echo " {$result['NameRegion']} ";
-    //     // echo " {$result['Days']} ";
-    //     echo $inp;
-    // }
 
-    // $sql2 = $mysqli->query("SELECT `FIO` FROM `courier` WHERE `idCourier` = {$_POST['courer']}");
-    // if($result = mysqli_fetch_array($sql2)){
-    //     echo "{$result['FIO']}";
-    // }
-    
-    // $sql3 = $mysqli->query("SELECT `FIO` FROM `courier` WHERE `idCourier` = {$_POST['courer']} && `idCourier` = {$_POST['courer']}");
-    // if($result = mysqli_fetch_array($sql2)){
-    //     echo "Курьер {$result['FIO']} занят";
-    // }
+// Проверка при добавлении 
+    $date = $_POST['datav']; // дата, введенная пользователем
+    $sql = "SELECT dateOtprav, idCour FROM chart WHERE dateOtprav = '" . date('Y-m-d', strtotime($date)) . "' AND idCour = {$_POST['courer']}";
+    $result = mysqli_query($mysqli, $sql);
 
-    // if(!isset($_POST['regions']) || !isset($_POST['datav'])) die('Нет нужных данных');
+    if (mysqli_num_rows($result) > 0 && mysqli_num_rows($result) > strtotime($date)) {
+        echo "В это время курьер занят другой доставкой. Выберите другую дату или курьера!";
 
-    // $inp = $_POST['datav'];//считанные данные с формы
-    // $sql3 = $mysqli->query("SELECT `Days` FROM `regions` WHERE `idRegions` = {$_POST['regions']}");
-    // if($result = mysqli_fetch_array($sql3)){
-    //     $inp2 = $result['Days']; //дней из базы
-    //     $u = "Курьер в пути до ". date('d.m.Y', strtotime('+ '. $inp2 .' day', strtotime(''.$inp .'')));
-    //     echo date('d.m.Y', strtotime('+ '. $inp2 .' day', strtotime(''.$inp .'')));
-    // }
-    
-
-
-// if (isset($_POST['ourForm_btn'])) echo "Курьер занят";
-//     $sql4 = $mysqli->query("INSERT INTO `products` (`Name`, `Price`) VALUES ('{$_POST['Name']}', '{$_POST['Price']}')");
-//    if($result = mysqli_fetch_array($sql4)) {
-//     die('Нет нужных данных');
-//    }
-echo "Курьер занят";
-
-    // if(!isset($_POST['regions']) || !isset($_POST['courer']) || !isset($_POST['datav'])) die('Нет нужных данных');
-
-
+    } else {  
+        //Добавляем запись
+        $sql4 = $mysqli->query("INSERT INTO `chart` (`idReg`, `idCour`, `dateOtprav`) VALUES ('{$_POST['region']}', '{$_POST['courer']}', '{$_POST['datav']}')");
+        
+        $inp = $_POST['datav'];//считанные данные с формы
+        $sql3 = $mysqli->query("SELECT `Days` FROM `regions` WHERE `idRegions` = {$_POST['region']}");
+        if($result = mysqli_fetch_array($sql3)){
+            $inp2 = $result['Days']; //дней из базы
+            $u = "Запись добавлена. Курьер в доставит посылку: ". date('d.m.Y', strtotime('+ '. $inp2 .' day', strtotime(''.$inp .'')));
+            echo $u;
+        }
+    }
 
 ?>

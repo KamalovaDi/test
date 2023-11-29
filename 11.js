@@ -1,16 +1,33 @@
 var servResponse = document.querySelector('#response');
-// var servResponse2 = document.querySelector('#response2');
+
+
+function validate_form(){
+    //var x = document.forms["testForm"]['datav'].value;
+    if (document.forms["testForm"]['datav'].value == "") {
+        alert("Пожалуйста, введите дату.");
+        return false;
+    }
+    if (document.forms["testForm"]['region'].selectedIndex === 0) {
+        alert("Пожалуйста, выберите регион.");
+        return false;
+    }
+    if (document.forms["testForm"]['courer'].selectedIndex === 0) {
+        alert("Пожалуйста, выберите курьера.");
+        return false;
+    }
+};
+
 document.forms.testForm.onsubmit = function(e){
     e.preventDefault();
+
     var userInput = document.forms.testForm.value;
     userInput = encodeURIComponent(userInput);
-
-    // var userInput2 = document.forms.testForm.ras.value;
-    // userInput2 = encodeURIComponent(userInput2);
 
     var xhr = new XMLHttpRequest();
 
     xhr.open('POST', '1(1).php');
+
+    xhr.onload = validate_form();
 
     var formData = new FormData(document.forms.testForm);
     // xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
@@ -22,7 +39,12 @@ document.forms.testForm.onsubmit = function(e){
         }
     }
     xhr.send(formData);
-    // xhr.send('rip='+userInput2);
-
+    // xhr.send('r='+userInput2);
     
 };
+
+
+
+
+
+
